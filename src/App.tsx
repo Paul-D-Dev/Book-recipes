@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Hit } from './models/recipe';
-import RecipeList from './RecipeList';
-import Loader from './Loader'
+import RecipeList from './components/RecipeList';
+import Loader from './components/Loader'
 
 const App = () => {
 

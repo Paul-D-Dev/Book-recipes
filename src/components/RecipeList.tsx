@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import './styles/recipe-list.scss'
+import '../styles/recipe-list.scss'
 // Declare the type of the props
 type RecipeListProps= {
     label: string,
