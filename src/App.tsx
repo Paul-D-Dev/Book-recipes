@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Hit } from './models/recipe';
 import Recipe from './Recipe';
+import Loader from './Loader'
 
 const App = () => {
 
@@ -12,6 +13,7 @@ const App = () => {
   const [recipes, setRecipes] = useState<Hit[]>([]);
   const [search, setSearch] = useState<string>('');
   const [query, setQuery] = useState('chicken');
+  const [isLoading, setIsLoading] = useState(true);
 
   // 
   useEffect(() => {
@@ -23,6 +25,7 @@ const App = () => {
     const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
     const data = await response.json();    
     setRecipes(data.hits);
+    setIsLoading(false);
   }
 
   const updateSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,12 +34,15 @@ const App = () => {
 
   const getSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true)
     setQuery(search);
   }
 
   return(
     <div className="App">
-          <form onSubmit={getSearch} className="search-form" >
+      
+
+      <form onSubmit={getSearch} className="search-form" >
         <input 
           type="text" 
           className="search-bar" 
@@ -46,18 +52,28 @@ const App = () => {
         <button className="search-button">Search</button>
       </form>
 
-      <p className="recipe__request">Recipes : {query}</p>
+      {isLoading ? 
+        ''
+        :
+        <p className="recipe__request">Recipes : {query}</p>
+      }
 
-      <div className="recipe__wrapper">
-        {recipes.map((recipe) => (  
-          <Recipe 
-            key={recipes.indexOf(recipe)}
-            label={recipe.recipe.label}
-            calories={recipe.recipe.calories}
-            image={recipe.recipe.image}
-          />
-        ))}
-      </div>
+      {isLoading ?
+      
+        <Loader />
+      :
+        <div className="recipe__wrapper">
+          {recipes.map((recipe) => (  
+            <Recipe 
+              key={recipes.indexOf(recipe)}
+              label={recipe.recipe.label}
+              calories={recipe.recipe.calories}
+              image={recipe.recipe.image}
+            />
+          ))}
+        </div>
+      }
+
 
     </div>
   )
