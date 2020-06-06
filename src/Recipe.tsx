@@ -1,26 +1,30 @@
 import React, { FunctionComponent } from 'react';
-import { Ingredient } from './models/recipe';
-
+import './styles/recipe.scss'
 // Declare the type of the props
 type RecipeProps= {
     label: string,
     calories: number,
     image: string,
-    ingredients: Ingredient[],
 }
 
 // Declare the type of Recipe : FunctionComponent<Type>
-const Recipe: FunctionComponent<RecipeProps> = ({label, calories, image, ingredients}) => {
+const Recipe: FunctionComponent<RecipeProps> = ({label, calories, image}) => {
     return (
-        <div>
-            <h1>{label}</h1>
-            <ol>
-                {ingredients.map((ingredient) => (
-                    <li>{ingredient.text}</li>
-                ))}
-            </ol>
-            <p>{calories}</p>
-            <img src={image} alt={label}/>
+        <div className="recipe">
+            <div className="recipe__img">
+                <img src={image} alt={label}/>
+            </div>
+
+            <div className="recipe__content">
+                <h2 className="recipe__title">{label}</h2>
+
+                <p className="recipe__energy">Energy : {Math.round(calories)} kcal</p>
+
+                <div className="link__button">
+                    <a href="#" className='recipe__link'>RECIPE</a>
+                </div>
+            </div>
+
         </div>
     )
 }

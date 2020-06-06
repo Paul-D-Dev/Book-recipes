@@ -36,22 +36,29 @@ const App = () => {
 
   return(
     <div className="App">
-      <form onSubmit={getSearch} className="search-form" >
-        <input type="text" className="search-bar" value={search} onChange={updateSearch}/>
+          <form onSubmit={getSearch} className="search-form" >
+        <input 
+          type="text" 
+          className="search-bar" 
+          placeholder="Tap your ingredient"
+          value={search} 
+          onChange={updateSearch}/>
         <button className="search-button">Search</button>
       </form>
 
-      <p>Recipes : {query}</p>
+      <p className="recipe__request">Recipes : {query}</p>
 
-      {recipes.map((recipe) => (  
-        <Recipe 
-          key={recipes.indexOf(recipe)}
-          label={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-          ingredients={recipe.recipe.ingredients}
-        />
-      ))}
+      <div className="recipe__wrapper">
+        {recipes.map((recipe) => (  
+          <Recipe 
+            key={recipes.indexOf(recipe)}
+            label={recipe.recipe.label}
+            calories={recipe.recipe.calories}
+            image={recipe.recipe.image}
+          />
+        ))}
+      </div>
+
     </div>
   )
 }
