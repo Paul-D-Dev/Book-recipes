@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Hit } from './models/recipe';
-import Recipe from './Recipe';
+import RecipeList from './RecipeList';
 import Loader from './Loader'
 
 const App = () => {
@@ -64,7 +64,7 @@ const App = () => {
       :
         <div className="recipe__wrapper">
           {recipes.map((recipe) => (  
-            <Recipe 
+            <RecipeList 
               key={recipes.indexOf(recipe)}
               label={recipe.recipe.label}
               calories={recipe.recipe.calories}

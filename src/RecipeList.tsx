@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from 'react';
-import './styles/recipe.scss'
+import './styles/recipe-list.scss'
 // Declare the type of the props
-type RecipeProps= {
+type RecipeListProps= {
     label: string,
     calories: number,
     image: string,
 }
 
 // Declare the type of Recipe : FunctionComponent<Type>
-const Recipe: FunctionComponent<RecipeProps> = ({label, calories, image}) => {
+const RecipeList: FunctionComponent<RecipeListProps> = ({label, calories, image}) => {
     return (
         <div className="recipe">
             <div className="recipe__img">
@@ -29,4 +29,4 @@ const Recipe: FunctionComponent<RecipeProps> = ({label, calories, image}) => {
     )
 }
 
-export default Recipe;
+export default RecipeList;
