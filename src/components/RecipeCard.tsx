@@ -1,14 +1,19 @@
 import React, { FunctionComponent } from 'react';
-import '../styles/recipe-list.scss'
+import {Link} from 'react-router-dom';
+import '../styles/recipe-card.scss'
+import { Recipe } from '../models/recipe';
+import encodeUrl from '../helpers/urlEncode';
 // Declare the type of the props
-type RecipeListProps= {
+type RecipeCardProps= {
+    recipe: Recipe
     label: string,
     calories: number,
     image: string,
 }
 
 // Declare the type of Recipe : FunctionComponent<Type>
-const RecipeList: FunctionComponent<RecipeListProps> = ({label, calories, image}) => {
+const RecipeCard: FunctionComponent<RecipeCardProps> = ({label, calories, image, recipe}) => {
+
     return (
         <div className="recipe">
             <div className="recipe__img">
@@ -21,7 +26,7 @@ const RecipeList: FunctionComponent<RecipeListProps> = ({label, calories, image}
                 <p className="recipe__energy">Energy : {Math.round(calories)} kcal</p>
 
                 <div className="link__button">
-                    <a href="#" className='recipe__link'>RECIPE</a>
+                    <Link to={`/recipe/${encodeUrl(recipe.uri)}`} className='recipe__link'>RECIPE</Link>
                 </div>
             </div>
 
@@ -29,4 +34,4 @@ const RecipeList: FunctionComponent<RecipeListProps> = ({label, calories, image}
     )
 }
 
-export default RecipeList;
+export default RecipeCard;
