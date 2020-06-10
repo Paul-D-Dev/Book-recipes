@@ -5,10 +5,6 @@ import { Hit } from '../models/recipe';
 import RecipeService from '../services/recipe-service';
 import '../styles/recipe-list.scss';
 
-type RecipeListProps = {
-    query : string
-}
-
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Hit[]>([]);
     const [search, setSearch] = useState<string>('');
@@ -26,13 +22,15 @@ const RecipeList = () => {
     
     const getSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsLoading(true)
+        setIsLoading(true);
         setQuery(search);
     }
 
     const getRecipes = async () => {
-        RecipeService.getRecipes(query).then(recipes => setRecipes(recipes.hits))
-        setIsLoading(false);
+        RecipeService.getRecipes(query).then(recipes => {
+            setRecipes(recipes.hits)
+            setIsLoading(false);
+        })
     }
 
     return (
@@ -48,8 +46,13 @@ const RecipeList = () => {
                 <button className="search-button">Search</button>
             </form>
 
+            {isLoading ? 
+                ''
+            :
+                <p className="recipe__request">Recipe : {query}</p>
+            }
+
             {isLoading ?
-      
                 <Loader />
             :
                 <div className="recipe__wrapper">
@@ -64,6 +67,7 @@ const RecipeList = () => {
                     ))}
                 </div>
             }
+
         </div>
     )
 }
