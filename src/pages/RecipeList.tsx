@@ -55,6 +55,7 @@ const RecipeList = () => {
             {isLoading ?
                 <Loader />
             :
+
                 <div className="recipe__wrapper">
                     {recipes.map((recipe) => (  
                         <RecipeCard 
