@@ -16,9 +16,9 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({label, calories, image,
 
     return (
         <div className="recipe">
-            <div className="recipe__img">
+            <Link to={`/recipe/${encodeUrl(recipe.uri)}`} className="recipe__img">
                 <img src={image} alt={label}/>
-            </div>
+            </Link>
 
             <div className="recipe__content">
                 <h2 className="recipe__title">{label}</h2>
