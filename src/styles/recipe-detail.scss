@@ -1,0 +1,117 @@
+$creamy-peach : #f3a683;
+$rosy-highlight: #f7d794;
+$soft-blue: #778beb;
+$color-button : linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+
+@mixin setBg($bg-color) {
+    background-color: $bg-color;
+    height: 32px;
+    width: 65px;
+    border-radius: 50px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+ul {
+    margin-top: 15px;
+    padding-left: 20px;
+    li {
+        list-style: none;
+        line-height: 2em;
+    }
+}
+
+
+.btn-back {
+    background-image: $color-button;
+    width: 85px;
+    height: 30px;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 5%;
+    margin-top: 5%;
+    cursor: pointer;
+
+    a{
+        text-decoration: none;
+        color:black;
+    }
+}
+
+.recipe__detail {
+    margin-top: 7%;
+}
+
+.recipe__presentation { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+
+    .recipe__img-wrapper {
+        display: flex;
+        justify-content: center;
+        img {
+            width: 65%;
+            max-width: 300px;
+            border-radius: 50%;
+        }
+    }
+
+    .recipe__label { 
+        margin-top: 20px;
+        align-self: center;
+    }
+    
+    .recipe__calories {
+        align-self: center;
+        margin-top: 15px;
+    }
+}
+
+.recipe__ingredients, .recipe__composition {
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+} 
+
+.recipe__composition {
+    .recipe__composition-item {
+        display: flex;
+        margin-top: 5px;
+
+        &:first-of-type{
+         margin-top: unset;
+        }
+    }
+}
+
+.bg-creamy-peach {
+    @include setBg($creamy-peach)
+}
+
+.bg-rosy-highlight {
+    @include setBg($rosy-highlight)
+}
+
+.bg-soft-blue {
+    @include setBg($soft-blue)
+}
+
+.btn__link {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .recipe__detail {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .recipe__presentation {
+        align-items: flex-start;
+    }
+}
